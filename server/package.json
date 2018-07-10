@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test nyc mocha --compilers js:babel-register ./test/*.test.js --recursive --timeout 50000 --exit",
-    "lint:js": "eslint **/*.js",
+    "lint:js": "eslint --fix **/*.js",
     "start": "nodemon --exec babel-node --presets env app.js",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
   },

@@ -1,9 +1,9 @@
+import { date, time } from '../utils/moment';
 import entries from '../model/db';
 import GUID from '../utils/guid';
-import moment from 'moment';
 
 // regex to test for valid image url
-const regex = /^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gif|png)$/;
+const regex = /^https?:\/\/(?:[a-z-]+\.)+[a-z]{2,6}(?:\/[^\#?]+)+\.(?:jpe?g|gif|png)$/;
 
 
 /**
@@ -11,42 +11,40 @@ const regex = /^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|gi
  * @class DriverController
  */
 class EntriesController {
-
   /**
-   * Creates a new entry 
+   * Creates a new entry
    * @staticmethod
    * @param  {object} req - Request object
    * @param {object} res - Response object
    * @return {json} res.json
    */
   static create(req, res) {
-
-    const {title,entry,img} = req.body;
+    const { title, entry, img } = req.body;
 
     if (!title || !entry || title.length < 1 || entry.length < 1) {
-        return res.status(404).json({message: 'Fields cannot be empty'})
+      return res.status(404).json({ message: 'Fields cannot be empty' });
     }
 
-    if (img && !regex.test(img) ) {
-        return res.status(404).json({message: 'Add a valid image'})
+    if (img && !regex.test(img)) {
+      return res.status(404).json({ message: 'Add a valid image' });
     }
 
-      const newEntry = {
-        entryId: GUID,
-        title,
-        entry,
-        img,
-        date: moment().format('L'),
-        time: moment().format('LT')
-      }
+    const newEntry = {
+      entryId: GUID,
+      title,
+      entry,
+      img,
+      date,
+      time,
+    };
 
-      // adds the new entry to the database
-      entries.push(newEntry)
-        
-        return res.status(201).json({
-            message: 'Entry added successfully',
-            newEntry
-        }); 
+    // adds the new entry to the database
+    entries.push(newEntry);
+
+    return res.status(201).json({
+      message: 'Entry added successfully',
+      newEntry,
+    });
   }
 
   /**
@@ -58,23 +56,22 @@ class EntriesController {
    * @return {json} res.json
    */
   static deleteEntry(req, res) {
-    
-    const {entryId} = req.params;
+    const { entryId } = req.params;
 
-    //check if entry exists
+    // check if entry exists
     const entryFound = entries.find(entry => entry.entryId === entryId);
- 
+
     // If entry does not exist...
     if (!entryFound) {
-        return res.status(404).json({
-            message: 'Entry not found'
-        });
+      return res.status(404).json({
+        message: 'Entry not found',
+      });
     }
 
     // if entry exists...
-  entries.splice(entries.indexOf(entryFound), 1);
-  return res.status(204).json()
-}
+    entries.splice(entries.indexOf(entryFound), 1);
+    return res.status(204).json();
+  }
 
   /**
    * Return entry that matches entryId
@@ -86,25 +83,23 @@ class EntriesController {
    * @return {json} res.json
    */
   static getEntry(req, res) {
-    
-    const {entryId} = req.params;
+    const { entryId } = req.params;
 
     // find entry with params entryId
-     const entryFound = entries.find(entry => entry.entryId === entryId);
-    
-     //if entry does not exist...
-     if (!entryFound) {
-        return res.status(404).json({
-            message: `Entry does not exist`,
-          });
-    }
-    
-    //if diary entry exists...
-    return res.status(200).json({
-        message: `Entry was found`,
-        entryFound,
-      });
+    const entryFound = entries.find(entry => entry.entryId === entryId);
 
+    // if entry does not exist...
+    if (!entryFound) {
+      return res.status(404).json({
+        message: 'Entry does not exist',
+      });
+    }
+
+    // if diary entry exists...
+    return res.status(200).json({
+      message: 'Entry was found',
+      entryFound,
+    });
   }
 
   /**
@@ -117,10 +112,10 @@ class EntriesController {
    */
   static getAllEntries(_req, res) {
     res.status(200).json({
-        message: 'Entries retrieved successfully',
-        entries,
-      });
-    }
+      message: 'Entries retrieved successfully',
+      entries,
+    });
+  }
 
   /**
    * Update an existing entry
@@ -131,46 +126,45 @@ class EntriesController {
    * @return {json} res.json
    */
   static update(req, res) {
-
-const {entryId} = req.params;
-const {title,entry,img} = req.body;
+    const { entryId } = req.params;
+    const { title, entry, img } = req.body;
 
     // find entry with params entryId
-    const entryFound = entries.find(entry => entry.entryId === entryId);
+    const entryFound = entries.find(entryItem => entryItem.entryId === entryId);
 
-    //if entry does not exist...
+    // if entry does not exist...
     if (!entryFound) {
-        return res.status(404).json({
-            message: `Entry does not exist`,
-          });
+      return res.status(404).json({
+        message: 'Entry does not exist',
+      });
     }
 
-    //Get index of entry
+    // Get index of entry
     const index = entries.indexOf(entryFound);
-    
+
     if (title.length < 1 || entry.length < 1) {
-        return res.status(404).json({message: 'Fields cannot be empty'})
+      return res.status(404).json({ message: 'Fields cannot be empty' });
     }
 
-    if (img && !regex.test(img) ) {
-        return res.status(404).json({message: 'Add a valid image'})
+    if (img && !regex.test(img)) {
+      return res.status(404).json({ message: 'Add a valid image' });
     }
 
     const updatedEntry = {
-        entryId: entryId,
-        title,
-        entry,
-        img,
-        date: moment().format('L'),
-        time: moment().format('LT')
-    }
+      entryId,
+      title,
+      entry,
+      img,
+      date,
+      time,
+    };
 
-    //Replace entry with the updated entry
+    // Replace entry with the updated entry
     entries.splice(index, 1, updatedEntry);
     return res.status(201).json({
-        message: 'Entry modified successfully',
-        updatedEntry
-      });
+      message: 'Entry modified successfully',
+      updatedEntry,
+    });
   }
 }
 
