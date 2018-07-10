@@ -6,6 +6,8 @@ MyDiary is an online journal where users can pen down their thoughts and feeling
 
 [![Build Status](https://travis-ci.org/EphraimDev/MyDiary.svg?branch=develop)](https://travis-ci.org/EphraimDev/MyDiary)
 [![Coverage Status](https://coveralls.io/repos/github/EphraimDev/MyDiary/badge.svg?branch=develop)](https://coveralls.io/github/EphraimDev/MyDiary?branch=develop)
+[![Maintainability](https://api.codeclimate.com/v1/badges/9b8e520c8a2cc9c00392/maintainability)](https://codeclimate.com/github/EphraimDev/MyDiary/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/9b8e520c8a2cc9c00392/test_coverage)](https://codeclimate.com/github/EphraimDev/MyDiary/test_coverage)
 
 ### Style guide
 
