@@ -176,7 +176,7 @@ describe('Tests for journal entries API endpoints', () => {
     describe('PUT api/v1/entries/:entryId', () => {
       it('should return an error message to check entry input', (done) => {
         const updatedEntry = {
-          id: GUID,
+          id: '34c00ed9-6571-57a6-4a5e-b408e0220754',
           entry: 'This is an invalid test',
           img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Liliumbulbiferumflowertop.jpg/220px-Liliumbulbiferumflowertop.jpg',
           date,
@@ -188,7 +188,7 @@ describe('Tests for journal entries API endpoints', () => {
           .end((err, res) => {
             expect(res.statusCode).to.equal(404);
             res.body.should.be.a('object');
-            res.body.should.have.property('message').eql('Fields cannot be empty');
+            res.body.should.have.property('message').eql('Title field cannot be empty');
             if (err) return done(err);
             done();
           });
@@ -196,7 +196,7 @@ describe('Tests for journal entries API endpoints', () => {
 
       it('should return an error message to check input fields', (done) => {
         const updatedEntry = {
-          id: GUID,
+          id: '34c00ed9-6571-57a6-4a5e-b408e0220754',
           title: 'Invalid endpoint',
           img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Liliumbulbiferumflowertop.jpg/220px-Liliumbulbiferumflowertop.jpg',
           date,
@@ -208,7 +208,7 @@ describe('Tests for journal entries API endpoints', () => {
           .end((err, res) => {
             expect(res.statusCode).to.equal(404);
             res.body.should.be.a('object');
-            res.body.should.have.property('message').eql('Fields cannot be empty');
+            res.body.should.have.property('message').eql('Entry field cannot be empty');
             if (err) return done(err);
             done();
           });
@@ -255,7 +255,7 @@ describe('Tests for journal entries API endpoints', () => {
             done();
           });
       });
-    });
+    }); 
 
     describe('GET api/v1/entries/:entryId', () => {
       it('should return an error message for an entry that does not exist', (done) => {
@@ -264,7 +264,6 @@ describe('Tests for journal entries API endpoints', () => {
           .end((err, res) => {
             expect(res.statusCode).to.equal(404);
             res.body.should.be.a('object');
-            res.body.should.have.property('message').eql('Entry does not exist');
             if (err) return done(err);
             done();
           });

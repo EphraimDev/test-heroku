@@ -142,8 +142,12 @@ class EntriesController {
     // Get index of entry
     const index = entries.indexOf(entryFound);
 
-    if (title.length < 1 || entry.length < 1) {
-      return res.status(404).json({ message: 'Fields cannot be empty' });
+    if (!title || title.length < 1) {
+      return res.status(404).json({ message: 'Title field cannot be empty' });
+    }
+
+    if (!entry || entry.length < 1) {
+      return res.status(404).json({ message: 'Entry field cannot be empty' });
     }
 
     if (img && !regex.test(img)) {
