@@ -182,7 +182,6 @@ describe('Tests for journal entries API endpoints', () => {
           date,
           time,
         };
-        console.log(updatedEntry);
         chai.request(app)
           .put('/api/v1/entries/34c00ed9-6571-57a6-4a5e-b408e0220754')
           .send(updatedEntry)
@@ -246,7 +245,7 @@ describe('Tests for journal entries API endpoints', () => {
           time,
         };
         chai.request(app)
-          .put('/api/v1/rides/gsk57w62-d3af-6y78-6b85-hd6d8kstw9')
+          .put('/api/v1/entries/gsk57w62-d3af-6y78-6b85-hd6d8kstw9')
           .send(updatedEntry)
           .end((err, res) => {
             expect(res.statusCode).to.equal(404);
