@@ -1,1 +1,2 @@
 [![Build Status](https://travis-ci.org/EphraimDev/MyDiary.svg?branch=develop)](https://travis-ci.org/EphraimDev/MyDiary)
+[![Coverage Status](https://coveralls.io/repos/github/EphraimDev/MyDiary/badge.svg?branch=develop)](https://coveralls.io/github/EphraimDev/MyDiary?branch=develop)

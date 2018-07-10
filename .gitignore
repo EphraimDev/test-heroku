@@ -3,3 +3,4 @@ fabric8-analytics.log
 .nyc_output/
 coverage/
 package-lock.json
+.coveralls.yml
