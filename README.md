@@ -1,1 +1,1 @@
-# MyDiary
+[![Build Status](https://travis-ci.org/EphraimDev/MyDiary.svg?branch=develop)](https://travis-ci.org/EphraimDev/MyDiary)
