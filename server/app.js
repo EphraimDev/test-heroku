@@ -1,6 +1,6 @@
-import express from 'express'; // web application framework for nodejs
-import logger from 'morgan'; // basically collects log from the server, such as request logs
-import bodyParser from 'body-parser'; // extract the body portion of an incoming request
+import express from 'express'; //web application framework for nodejs
+import logger from 'morgan'; //basically collects log from the server, such as request logs
+import bodyParser from 'body-parser'; //extract the body portion of an incoming request
 
 import router from './route/index';
 
@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api/v1', router);
 
 
-// set environment port
+//set environment port
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
