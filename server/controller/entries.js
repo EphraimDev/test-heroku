@@ -144,35 +144,18 @@ class EntriesController {
     const entryFound = entries.find(entryItem => entryItem.entryId === entryId);
 
     // if entry does not exist...
-    if (!entryFound) {
-      return res.status(404).json({
-        message: 'Entry does not exist',
-      });
-    }
-
+    if (!entryFound) return res.status(404).json({ message: 'Entry does not exist' });
+    
     // Get index of entry
     const index = entries.indexOf(entryFound);
 
-    if (!title || title.length < 1) {
-      return res.status(404).json({ message: 'Title field cannot be empty' });
-    }
+    if (!title || title.length < 1) return res.status(404).json({ message: 'Title field cannot be empty' });
 
-    if (!entry || entry.length < 1) {
-      return res.status(404).json({ message: 'Entry field cannot be empty' });
-    }
+    if (!entry || entry.length < 1) return res.status(404).json({ message: 'Entry field cannot be empty' });
 
-    if (img && !regex.test(img)) {
-      return res.status(404).json({ message: 'Add a valid image' });
-    }
+    if (img && !regex.test(img)) return res.status(404).json({ message: 'Add a valid image' });
 
-    const updatedEntry = {
-      entryId,
-      title,
-      entry,
-      img,
-      date,
-      time,
-    };
+    const updatedEntry = { entryId, title, entry, img, date, time };
 
     // Replace entry with the updated entry
     entries.splice(index, 1, updatedEntry);

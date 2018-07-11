@@ -12,7 +12,19 @@ chai.should();
 
 chai.use(chaiHttp);
 
-describe('Tests for journal entries API endpoints', () => {
+describe('Tests for My Diary API endpoints', () => {
+  describe('GET api/v1', () => {
+    it('should display a welcome page', (done) => {
+      chai.request(app)
+        .get('/api/v1')
+        .end((err, res) => {
+          expect(res.statusCode).to.equal(200);
+          res.body.should.be.a('string');
+          if (err) return done(err);
+          done();
+        });
+    });
+  });
   describe('Handles valid endpoints for entries', () => {
     describe('POST api/v1/entries', () => {
       it('should add an entry', (done) => {
