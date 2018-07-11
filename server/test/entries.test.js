@@ -135,9 +135,9 @@ describe('Tests for My Diary API endpoints', () => {
           .post('/api/v1/entries')
           .send(newEntry)
           .end((err, res) => {
-            expect(res.statusCode).to.equal(404);
+            expect(res.statusCode).to.equal(400);
             res.body.should.be.a('object');
-            res.body.should.have.property('message').eql('Fields cannot be empty');
+            res.body.should.have.property('message').eql('Valid title is required');
             if (err) return done(err);
             done();
           });
@@ -155,9 +155,9 @@ describe('Tests for My Diary API endpoints', () => {
           .post('/api/v1/entries')
           .send(newEntry)
           .end((err, res) => {
-            expect(res.statusCode).to.equal(404);
+            expect(res.statusCode).to.equal(400);
             res.body.should.be.a('object');
-            res.body.should.have.property('message').eql('Fields cannot be empty');
+            res.body.should.have.property('message').eql('Valid entry is required');
             if (err) return done(err);
             done();
           });
@@ -176,7 +176,7 @@ describe('Tests for My Diary API endpoints', () => {
           .post('/api/v1/entries')
           .send(newEntry)
           .end((err, res) => {
-            expect(res.statusCode).to.equal(404);
+            expect(res.statusCode).to.equal(400);
             res.body.should.be.a('object');
             res.body.should.have.property('message').eql('Add a valid image');
             if (err) return done(err);
@@ -198,9 +198,9 @@ describe('Tests for My Diary API endpoints', () => {
           .put('/api/v1/entries/34c00ed9-6571-57a6-4a5e-b408e0220754')
           .send(updatedEntry)
           .end((err, res) => {
-            expect(res.statusCode).to.equal(404);
+            expect(res.statusCode).to.equal(400);
             res.body.should.be.a('object');
-            res.body.should.have.property('message').eql('Title field cannot be empty');
+            res.body.should.have.property('message').eql('Valid title is required');
             if (err) return done(err);
             done();
           });
@@ -218,9 +218,9 @@ describe('Tests for My Diary API endpoints', () => {
           .put('/api/v1/entries/2e00bcef-d3af-6y78-6b85-e9b30a043e28')
           .send(updatedEntry)
           .end((err, res) => {
-            expect(res.statusCode).to.equal(404);
+            expect(res.statusCode).to.equal(400);
             res.body.should.be.a('object');
-            res.body.should.have.property('message').eql('Entry field cannot be empty');
+            res.body.should.have.property('message').eql('Valid entry is required');
             if (err) return done(err);
             done();
           });
@@ -239,7 +239,7 @@ describe('Tests for My Diary API endpoints', () => {
           .put('/api/v1/entries/2e00bcef-d3af-6y78-6b85-e9b30a043e28')
           .send(updatedEntry)
           .end((err, res) => {
-            expect(res.statusCode).to.equal(404);
+            expect(res.statusCode).to.equal(400);
             res.body.should.be.a('object');
             res.body.should.have.property('message').eql('Add a valid image');
             if (err) return done(err);
