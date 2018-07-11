@@ -137,7 +137,11 @@ describe('Tests for My Diary API endpoints', () => {
           .end((err, res) => {
             expect(res.statusCode).to.equal(400);
             res.body.should.be.a('object');
+<<<<<<< HEAD
             res.body.should.have.property('message').eql('Valid title is required');
+=======
+            res.body.should.have.property('message').eql('Valid title and entry data is required');
+>>>>>>> ft-158903565-set-up-test-api-endpoints
             if (err) return done(err);
             done();
           });
@@ -157,7 +161,11 @@ describe('Tests for My Diary API endpoints', () => {
           .end((err, res) => {
             expect(res.statusCode).to.equal(400);
             res.body.should.be.a('object');
+<<<<<<< HEAD
             res.body.should.have.property('message').eql('Valid entry is required');
+=======
+            res.body.should.have.property('message').eql('Valid title and entry data is required');
+>>>>>>> ft-158903565-set-up-test-api-endpoints
             if (err) return done(err);
             done();
           });
@@ -200,7 +208,11 @@ describe('Tests for My Diary API endpoints', () => {
           .end((err, res) => {
             expect(res.statusCode).to.equal(400);
             res.body.should.be.a('object');
+<<<<<<< HEAD
             res.body.should.have.property('message').eql('Valid title is required');
+=======
+            res.body.should.have.property('message').eql('Valid title and entry data is required');
+>>>>>>> ft-158903565-set-up-test-api-endpoints
             if (err) return done(err);
             done();
           });
@@ -220,7 +232,11 @@ describe('Tests for My Diary API endpoints', () => {
           .end((err, res) => {
             expect(res.statusCode).to.equal(400);
             res.body.should.be.a('object');
+<<<<<<< HEAD
             res.body.should.have.property('message').eql('Valid entry is required');
+=======
+            res.body.should.have.property('message').eql('Valid title and entry data is required');
+>>>>>>> ft-158903565-set-up-test-api-endpoints
             if (err) return done(err);
             done();
           });

@@ -138,8 +138,13 @@ class EntriesController {
     // Get index of entry
     const index = entries.indexOf(entryFound);
 
+<<<<<<< HEAD
     const updatedEntry = {
       entryId, title, entry, img, date, time,
+=======
+    const updatedEntry = {
+      entryId, title, entry, img, date, time,
+>>>>>>> ft-158903565-set-up-test-api-endpoints
     };
 
     // Replace entry with the updated entry
