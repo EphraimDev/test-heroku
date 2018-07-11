@@ -255,7 +255,7 @@ describe('Tests for journal entries API endpoints', () => {
             done();
           });
       });
-    }); 
+    });
 
     describe('GET api/v1/entries/:entryId', () => {
       it('should return an error message for an entry that does not exist', (done) => {

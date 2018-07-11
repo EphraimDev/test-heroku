@@ -3,7 +3,7 @@ import entries from '../model/db';
 import GUID from '../utils/guid';
 
 // regex to test for valid image url
-const regex = /^https?:\/\/(?:[a-z-]+\.)+[a-z]{2,6}(?:\/[^\#?]+)+\.(?:jpe?g|gif|png)$/;
+const regex = /^https?:\/\/(?:[a-z-]+\.)+[a-z]{2,6}(?:\/[^#?]+)+\.(?:jpe?g|gif|png)$/;
 
 
 /**
@@ -11,6 +11,17 @@ const regex = /^https?:\/\/(?:[a-z-]+\.)+[a-z]{2,6}(?:\/[^\#?]+)+\.(?:jpe?g|gif|
  * @class DriverController
  */
 class EntriesController {
+  /**
+   * Welcome page
+   * @staticmethod
+   * @param {object} req - Request object
+   * @param {object} res - Response object
+   * @return {json} res.json
+   */
+  static welcome(req, res) {
+    return res.status(200).json('Welcome to My Diary app');
+  }
+
   /**
    * Creates a new entry
    * @staticmethod
