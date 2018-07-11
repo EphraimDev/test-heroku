@@ -10,20 +10,9 @@ export default {
     const { title, entry, img } = req.body;
     const regex = /^https?:\/\/(?:[a-z-]+\.)+[a-z]{2,6}(?:\/[^#?]+)+\.(?:jpe?g|gif|png)$/;
 
-<<<<<<< HEAD
-    if (!title || typeof title !== 'string' || title.toString().trim() === '') {
-      return res.status(400).send({
-        message: 'Valid title is required',
-      });
-    }
-    if (!entry || typeof entry !== 'string' || entry.toString().trim() === '') {
-      return res.status(400).send({
-        message: 'Valid entry is required',
-=======
     if (!title || typeof title !== 'string' || title.toString().trim() === '' || !entry || typeof entry !== 'string' || entry.toString().trim() === '') {
       return res.status(400).send({
         message: 'Valid title and entry data is required',
->>>>>>> ft-158903565-set-up-test-api-endpoints
       });
     }
     if (img && (!regex.test(img) || img.toString().trim() === '')) {
