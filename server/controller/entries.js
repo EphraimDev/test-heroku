@@ -2,15 +2,23 @@ import { date, time } from '../utils/moment';
 import entries from '../model/db';
 import GUID from '../utils/guid';
 
-// regex to test for valid image url
-const regex = /^https?:\/\/(?:[a-z-]+\.)+[a-z]{2,6}(?:\/[^\#?]+)+\.(?:jpe?g|gif|png)$/;
-
 
 /**
  * @exports
  * @class DriverController
  */
 class EntriesController {
+  /**
+   * Welcome page
+   * @staticmethod
+   * @param {object} req - Request object
+   * @param {object} res - Response object
+   * @return {json} res.json
+   */
+  static welcome(req, res) {
+    return res.status(200).json('Welcome to My Diary app');
+  }
+
   /**
    * Creates a new entry
    * @staticmethod
@@ -20,14 +28,6 @@ class EntriesController {
    */
   static create(req, res) {
     const { title, entry, img } = req.body;
-
-    if (!title || !entry || title.length < 1 || entry.length < 1) {
-      return res.status(404).json({ message: 'Fields cannot be empty' });
-    }
-
-    if (img && !regex.test(img)) {
-      return res.status(404).json({ message: 'Add a valid image' });
-    }
 
     const newEntry = {
       entryId: GUID,
@@ -133,34 +133,13 @@ class EntriesController {
     const entryFound = entries.find(entryItem => entryItem.entryId === entryId);
 
     // if entry does not exist...
-    if (!entryFound) {
-      return res.status(404).json({
-        message: 'Entry does not exist',
-      });
-    }
+    if (!entryFound) return res.status(404).json({ message: 'Entry does not exist' });
 
     // Get index of entry
     const index = entries.indexOf(entryFound);
 
-    if (!title || title.length < 1) {
-      return res.status(404).json({ message: 'Title field cannot be empty' });
-    }
-
-    if (!entry || entry.length < 1) {
-      return res.status(404).json({ message: 'Entry field cannot be empty' });
-    }
-
-    if (img && !regex.test(img)) {
-      return res.status(404).json({ message: 'Add a valid image' });
-    }
-
     const updatedEntry = {
-      entryId,
-      title,
-      entry,
-      img,
-      date,
-      time,
+      entryId, title, entry, img, date, time,
     };
 
     // Replace entry with the updated entry

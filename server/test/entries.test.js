@@ -12,7 +12,19 @@ chai.should();
 
 chai.use(chaiHttp);
 
-describe('Tests for journal entries API endpoints', () => {
+describe('Tests for My Diary API endpoints', () => {
+  describe('GET api/v1', () => {
+    it('should display a welcome page', (done) => {
+      chai.request(app)
+        .get('/api/v1')
+        .end((err, res) => {
+          expect(res.statusCode).to.equal(200);
+          res.body.should.be.a('string');
+          if (err) return done(err);
+          done();
+        });
+    });
+  });
   describe('Handles valid endpoints for entries', () => {
     describe('POST api/v1/entries', () => {
       it('should add an entry', (done) => {
@@ -123,9 +135,9 @@ describe('Tests for journal entries API endpoints', () => {
           .post('/api/v1/entries')
           .send(newEntry)
           .end((err, res) => {
-            expect(res.statusCode).to.equal(404);
+            expect(res.statusCode).to.equal(400);
             res.body.should.be.a('object');
-            res.body.should.have.property('message').eql('Fields cannot be empty');
+            res.body.should.have.property('message').eql('Valid title and entry data is required');
             if (err) return done(err);
             done();
           });
@@ -143,9 +155,9 @@ describe('Tests for journal entries API endpoints', () => {
           .post('/api/v1/entries')
           .send(newEntry)
           .end((err, res) => {
-            expect(res.statusCode).to.equal(404);
+            expect(res.statusCode).to.equal(400);
             res.body.should.be.a('object');
-            res.body.should.have.property('message').eql('Fields cannot be empty');
+            res.body.should.have.property('message').eql('Valid title and entry data is required');
             if (err) return done(err);
             done();
           });
@@ -164,7 +176,7 @@ describe('Tests for journal entries API endpoints', () => {
           .post('/api/v1/entries')
           .send(newEntry)
           .end((err, res) => {
-            expect(res.statusCode).to.equal(404);
+            expect(res.statusCode).to.equal(400);
             res.body.should.be.a('object');
             res.body.should.have.property('message').eql('Add a valid image');
             if (err) return done(err);
@@ -186,9 +198,9 @@ describe('Tests for journal entries API endpoints', () => {
           .put('/api/v1/entries/34c00ed9-6571-57a6-4a5e-b408e0220754')
           .send(updatedEntry)
           .end((err, res) => {
-            expect(res.statusCode).to.equal(404);
+            expect(res.statusCode).to.equal(400);
             res.body.should.be.a('object');
-            res.body.should.have.property('message').eql('Title field cannot be empty');
+            res.body.should.have.property('message').eql('Valid title and entry data is required');
             if (err) return done(err);
             done();
           });
@@ -206,9 +218,9 @@ describe('Tests for journal entries API endpoints', () => {
           .put('/api/v1/entries/2e00bcef-d3af-6y78-6b85-e9b30a043e28')
           .send(updatedEntry)
           .end((err, res) => {
-            expect(res.statusCode).to.equal(404);
+            expect(res.statusCode).to.equal(400);
             res.body.should.be.a('object');
-            res.body.should.have.property('message').eql('Entry field cannot be empty');
+            res.body.should.have.property('message').eql('Valid title and entry data is required');
             if (err) return done(err);
             done();
           });
@@ -227,7 +239,7 @@ describe('Tests for journal entries API endpoints', () => {
           .put('/api/v1/entries/2e00bcef-d3af-6y78-6b85-e9b30a043e28')
           .send(updatedEntry)
           .end((err, res) => {
-            expect(res.statusCode).to.equal(404);
+            expect(res.statusCode).to.equal(400);
             res.body.should.be.a('object');
             res.body.should.have.property('message').eql('Add a valid image');
             if (err) return done(err);
@@ -255,7 +267,7 @@ describe('Tests for journal entries API endpoints', () => {
             done();
           });
       });
-    }); 
+    });
 
     describe('GET api/v1/entries/:entryId', () => {
       it('should return an error message for an entry that does not exist', (done) => {
